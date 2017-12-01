@@ -2,6 +2,10 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  dev: (process.env.NODE_ENV !== 'production'), // true when 'npm run dev', false when 'npm run build' then 'npm start'
+  env: {
+    devUrl: 'https://esdiot.ddns.net:8443'
+  },
   head: {
     title: 'Fleet Manager',
     meta: [

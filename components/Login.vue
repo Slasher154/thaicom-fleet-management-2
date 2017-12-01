@@ -25,7 +25,7 @@
     </div>
     <div class="field">
       <p class="control">
-        <button class="button is-success" @click="login">
+        <button :class="[{ 'is-loading': isLoading }, 'button', 'is-success']" @click="login">
           Login
         </button>
       </p>
@@ -35,32 +35,30 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import https from 'https'
   export default {
     data () {
       return {
         username: '',
-        password: ''
+        password: '',
+        isLoading: false
       }
     },
     methods: {
       async login () {
-        const agent = new https.Agent({
-          rejectUnauthorized: false
-        })
+        this.isLoading = true
         try {
-          let response = await axios.get(`https://esdiot.ddns.net:8443/login?user=${this.username}&pass=${this.password}`, {httpsAgent: agent})
+          let response = await this.$_callUbiGet('login', {user: this.username, pass: this.password})
           if (response.data.res === 'Ok') {
             this.$toast.open(`Successfully log in`)
             this.$store.commit('setApiKey', response.data.msg)
-            this.$store.commit('setUser', { username: this.username })
+            this.$store.commit('setUser', {username: this.username})
           } else {
             this.$toast.open(`Invalid username or password`)
           }
         } catch (e) {
           this.$toast.open(`Invalid username or password`)
         }
+        this.isLoading = false
       }
     }
   }

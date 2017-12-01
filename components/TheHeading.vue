@@ -100,7 +100,7 @@
           <div class="navbar-item" v-if="$store.state.user">
 
             <p class="control">
-              <a class="button is-primary" @click="logout">
+              <a :class="[{ 'is-loading' : isLoggingOut }, 'button', 'is-primary']" @click="logout">
               <span class="icon">
                 <i class="fa fa-download"></i>
               </span>
@@ -122,11 +122,18 @@
 
 <script>
   export default {
+    data () {
+      return {
+        isLoggingOut: false
+      }
+    },
     methods: {
       logout () {
+        this.isLoggingOut = true
         this.$toast.open(`Successfully log out`)
         this.$store.commit('setApiKey', '')
         this.$store.commit('setUser', null)
+        this.isLoggingOut = false
       }
     }
   }
