@@ -17,6 +17,7 @@
     "buefy": "^0.5.4",
     "lodash": "^4.17.4",
     "nuxt": "^1.0.0-rc11",
+    "vee-validate": "^2.0.0-rc.25",
     "vue2-google-maps": "^0.8.4"
   },
   "devDependencies": {

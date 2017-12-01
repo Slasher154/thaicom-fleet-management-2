@@ -19,7 +19,8 @@ module.exports = {
     '~plugins/buefy',
     '~plugins/filters',
     '~plugins/googlemaps',
-    '~plugins/mixins'
+    '~plugins/mixins',
+    '~plugins/vee-validate'
   ],
   /*
   ** Customize the progress bar color

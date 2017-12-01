@@ -11,7 +11,9 @@ const createStore = () => {
       company: {
         name: 'Thaicom PLC.',
         vehicles: []
-      }
+      },
+      apiKey: '',
+      user: null
     },
     mutations: {
       changeName (state) {
@@ -43,6 +45,12 @@ const createStore = () => {
       toggleShowOnMap (state, vid) {
         let vehicle = state.company.vehicles.find(v => v.vid === vid)
         vehicle.showOnMap = !vehicle.showOnMap
+      },
+      setApiKey (state, key) {
+        state.apiKey = key
+      },
+      setUser (state, user) {
+        state.user = user
       }
     }
   })
